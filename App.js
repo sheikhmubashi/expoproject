@@ -5,7 +5,7 @@ import {
   View,
   SafeAreaView,
   Image,
-  TouchableWithoutFeedback,
+  TouchableNativeFeedback,
 } from "react-native";
 
 export default function App() {
@@ -17,16 +17,11 @@ export default function App() {
       <Text onPress={click} numberOfLines={1}>
         Welcome to React Native expo
       </Text>
-      <TouchableWithoutFeedback onPress={()=>console.log("tapped")}>
-        <Image
-          source={{
-            uri: "https://picsum.photos/200/300",
-            width: 200,
-            height: 300,
-          }}
-          fadeDuration={5000}
-        />
-      </TouchableWithoutFeedback>
+      <TouchableNativeFeedback onPress={()=>console.log("tapped")}>
+        <View style={{width: 200, height: 70, backgroundColor: 'dodgerblue'}}>
+
+        </View>
+      </TouchableNativeFeedback>
     </SafeAreaView>
   );
 }
