@@ -6,22 +6,23 @@ import {
   SafeAreaView,
   Image,
   TouchableNativeFeedback,
+  Button,
+  Alert,
+  Platform,
+  StatusBar,
 } from "react-native";
-
+import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks";
 export default function App() {
+  console.log(useDeviceOrientation())
+  const {landscape} = useDeviceOrientation();
   const click = () => {
     console.log("Clicked");
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Text onPress={click} numberOfLines={1}>
-        Welcome to React Native expo
-      </Text>
-      <TouchableNativeFeedback onPress={()=>console.log("tapped")}>
-        <View style={{width: 200, height: 70, backgroundColor: 'dodgerblue'}}>
-
-        </View>
-      </TouchableNativeFeedback>
+      <View
+        style={{ backgroundColor: "dodgerblue", width: "100%", height: landscape ? '100%' : "30%" }}
+      ></View>
     </SafeAreaView>
   );
 }
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
